@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:calcular_dias/dateDiference.page.dart';
 import 'package:calcular_dias/singup.page.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,10 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Login'),
+        automaticallyImplyLeading: false,
+      ),
       body: Container(
         padding: EdgeInsets.only(top: 60, left: 40, right: 40),
         color: Colors.white,
@@ -15,9 +20,6 @@ class LoginPage extends StatelessWidget {
             SizedBox(
               width: 128,
               height: 128,
-              child: Text(
-                "Login",
-              ),
             ),
             SizedBox(
               height: 20,
@@ -87,7 +89,7 @@ class LoginPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => LoginPage(),
+                          builder: (context) => dateDiference(),
                         ),
                       );
                     }
@@ -107,7 +109,7 @@ class LoginPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SingUpPage(),
+                      builder: (context) => SignupPage(),
                     ),
                   );
                 },

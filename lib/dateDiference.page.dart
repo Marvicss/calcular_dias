@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_final_fields
 
 import 'dart:ffi';
 
@@ -6,6 +6,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class dateDiference extends StatelessWidget {
+  String _dataInicial = '';
+  String _dataFinal = '';
+
+  String calculaDiferenca(String dataInicial, String dataFinal) {
+    DateTime dt1 = DateTime.parse(dataInicial);
+    DateTime dt2 = DateTime.parse(dataFinal);
+
+    Duration diff = dt1.difference(dt2);
+    print(diff.inDays);
+    return "A diferença é de ${diff.inDays} dias";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +35,9 @@ class dateDiference extends StatelessWidget {
                 fieldLabelText: "Data Inicial",
                 fieldHintText: "DD/MM/AAAA",
                 keyboardType: TextInputType.datetime,
+                onDateSubmitted: (DateTime date) {
+                  _dataInicial = date.toString();
+                },
               ),
               SizedBox(
                 height: 20,
@@ -33,6 +48,9 @@ class dateDiference extends StatelessWidget {
                 fieldLabelText: "Data Final",
                 fieldHintText: "DD/MM/AAAA",
                 keyboardType: TextInputType.datetime,
+                onDateSubmitted: (DateTime date) {
+                  _dataFinal = date.toString();
+                },
               ),
               SizedBox(
                 height: 20,
@@ -67,9 +85,20 @@ class dateDiference extends StatelessWidget {
                         ),
                       ],
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      String result =
+                          calculaDiferenca(_dataInicial, _dataFinal);
+                      Container(
+                        child: ListView(
+                          children: [Text(result)],
+                        ),
+                      );
+                    },
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 40,
               ),
             ],
           ),
